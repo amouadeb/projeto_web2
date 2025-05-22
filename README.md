@@ -17,7 +17,7 @@ Principais funcionalidades:
 O projeto segue uma estrutura organizada baseada no padrão MVC, separando claramente as responsabilidades:
 
 ```
-simple-event-api/
+projeto_web2/
 │
 ├── config/                # Arquivos de configuração
 │   └── database.js        # Configuração de conexão com o banco de dados
@@ -30,9 +30,8 @@ simple-event-api/
 ├── views/                 # Views da aplicação
 │   └── eventos.ejs        # View para visualização de eventos
 ├── .env.example           # Exemplo de variáveis de ambiente
-├── init.sql               # Script SQL para inicialização do banco
+├── 20250522init.sql       # Script SQL para inicialização do banco
 ├── package.json           # Dependências e scripts do projeto
-├── populate-eventos.js    # Script para popular o banco com dados de exemplo
 ├── server.js              # Arquivo principal que inicializa o servidor
 └── README.md              # Documentação do projeto
 ```

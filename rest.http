@@ -9,17 +9,24 @@ POST http://localhost:3000/api/eventos
 Content-Type: application/json
 
 {
-  "nome": "Ariel",
-  "descricao": "Foda"
+  "titulo": "Ariel",
+  "descricao": "Foda",
+  "local" : "Rua 1",
+  "data" : "2023-10-10",
+  "status" : "Pendente"
 }
 
 ### Atualizar categoria
 PUT http://localhost:3000/api/eventos/:id
+
 Content-Type: application/json
 
 {
-  "nome": "Ariel",
-  "descricao": "Foda"
+  "titulo": "Ariel",
+  "descricao": "Foda",
+  "local" : "Rua 1",
+  "data" : "2023-10-10",
+  "status" : "Pendente"
 }
 
 ### Deletar categoria
