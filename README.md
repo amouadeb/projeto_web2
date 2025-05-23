@@ -1,20 +1,20 @@
 # Plataforma de Eventos
 
-Este projeto implementa uma API simples de gerenciamento de eventos utilizando Node.js, Express e PostgreSQL, seguindo o padrão de arquitetura MVC (Model-View-Controller). A API permite criar, visualizar, editar e excluir eventos através de endpoints REST.
+Este projeto implementa uma API simples de gerenciamento de eventos utilizando a conexção com banco de dados por meio de  Express e PostgreSQL, seguindo o padrão de arquitetura  Model-View-Controller (MVC). O projeto permite criar, visualizar, editar e excluir eventos através de diversos endpoints como: GET, POST, DELETE e PUT.
 
 ## Descrição do Sistema
 
-A Plataforma de Eventos é uma aplicação backend que facilita a organização e acompanhamento de eventos. O sistema foi desenvolvido com foco na simplicidade e eficiência, permitindo operações CRUD (Create, Read, Update, Delete) para eventos.
+A Plataforma de Eventos é uma aplicação simples en backend que facilita a organização e acompanhamento de eventos. O sistema foi desenvolvido com foco na simplicidade e eficiência, permitindo operações CRUD (Create, Read, Update, Delete) no cenario de eventos.
 
-Principais funcionalidades:
-- Criação, visualização, edição e exclusão de eventos (CRUD completo)
-- Respostas JSON para visualização clara das operações
-- Conexão com banco de dados PostgreSQL/Supabase
-- Interface visual simples para gerenciamento de eventos
+## Principais funcionalidades:
+- CRUD completo: Criação, visualização, edição e exclusão de eventos 
+- Respostas em JSON para visualização clara das operações
+- Conexão com banco de dados Postgre/Express/Supabase
+- Interface simples para gerenciamento  e visualização de eventos
 
 ## Estrutura de Pastas e Arquivos
 
-O projeto segue uma estrutura organizada baseada no padrão MVC, separando claramente as responsabilidades:
+Pastas seguindo o padrão MVC completo:
 
 ```
 projeto_web2/

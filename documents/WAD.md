@@ -6,3 +6,7 @@ Na imagem a seguir pode se encontrar o modelo logico feito no mermaid.live
 <img src="./assets/modelagem.png"></img>
 
 
+### DIAGRAMA MVC
+Na imagem a seguir pode-se encontrar o diagrama MVC feito no draw.io
+<img src="./assets/diagrama.png"></img>
+
