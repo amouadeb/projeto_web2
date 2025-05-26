@@ -1,4 +1,4 @@
-// models/Evento.js
+
 const pool = require('../config/database');
 
 class Evento {

@@ -16,25 +16,34 @@ A Plataforma de Eventos é uma aplicação simples en backend que facilita a org
 
 Pastas seguindo o padrão MVC completo:
 
-```
+
 projeto_web2/
 │
+├── assets/                # Recursos estáticos (imagens, diagramas etc.)
+│   ├── diagrama.png       # Diagrama do projeto
+│   └── modelagem.png      # Modelo de dados
 ├── config/                # Arquivos de configuração
-│   └── database.js        # Configuração de conexão com o banco de dados
+│   └── database.js        # Conexão com o banco de dados
 ├── controllers/           # Controladores da aplicação
-│   └── EventoController.js # Controlador de eventos
-├── models/                # Modelos de dados
-│   └── Evento.js          # Modelo de eventos
-├── routes/                # Definição das rotas
-│   └── index.js           # Rotas principais da aplicação
-├── views/                 # Views da aplicação
-│   └── eventos.ejs        # View para visualização de eventos
+│   └── EventoController.js # Lógica dos endpoints de evento
+├── documents/             # Documentos e specs
+│   └── WAD.md             # Documento WAD
+├── migration/             # Scripts de migração do banco
+│   ├── 20250522init.sql   # Script de inicialização do schema
+│   └── script_sql.js      # Auxiliar de migração em JavaScript
+├── models/                # Modelos de dados (ORM)
+│   └── Evento.js          # Definição do modelo Evento
+├── routes/                # Definição de rotas
+│   └── index.js           # Rotas principais da API
+├── node_modules/          # Dependências instaladas
+├── .env                   # Variáveis de ambiente (não versionar)
 ├── .env.example           # Exemplo de variáveis de ambiente
-├── 20250522init.sql       # Script SQL para inicialização do banco
+├── .gitignore             # Arquivos/pastas ignorados pelo Git
+├── package-lock.json      # Versões exatas das dependências
 ├── package.json           # Dependências e scripts do projeto
-├── server.js              # Arquivo principal que inicializa o servidor
-└── README.md              # Documentação do projeto
-```
+└── README.md              # Documentação geral do projeto
+├── rest.http             # Coleção de requisições HTTP para testar a API
+└── server.js              # Arquivo principal que inicializa o servidor
 
 ## Modelo do Banco de Dados
 
@@ -121,7 +130,7 @@ A API disponibiliza os seguintes endpoints:
 - **express**: Framework web para Node.js
 - **pg**: Cliente PostgreSQL para Node.js
 - **dotenv**: Carregamento de variáveis de ambiente
-- **ejs**: Engine de templates para visualização
+- **ejs**: Engine de templates para visualização (html)
 
 ## Exemplos de Uso
 

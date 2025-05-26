@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Eventos</title>
+</head>
+<body>
+    <h1>Plataforma de Eventos</h1>
+    
+    <h2>Lista de Eventos</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Data</th>
+                <th>Local</th>
+                <th>Status</th>
+                <th>Criado em</th>
+                <th>Atualizado em</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (eventos && eventos.length > 0) { %>
+                <% eventos.forEach(evento => { %>
+                    <tr>
+                        <td><%= evento.id %></td>
+                        <td><%= evento.titulo %></td>
+                        <td><%= evento.descricao || 'Sem descrição' %></td>
+                        <td><%= evento.data ? new Date(evento.data).toLocaleString() : 'Não definida' %></td>
+                        <td><%= evento.local || 'Não definido' %></td>
+                        <td><%= evento.status %></td>
+                        <td><%= new Date(evento.created_at).toLocaleString() %></td>
+                        <td><%= new Date(evento.updated_at).toLocaleString() %></td>
+                        <td>
+                            <a href="#edit-<%= evento.id %>">Editar</a> | 
+                            <a href="#delete-<%= evento.id %>" onclick="return confirm('Tem certeza que deseja excluir este evento?')">Excluir</a>
+                        </td>
+                    </tr>
+                <% }); %>
+            <% } else { %>
+                <tr>
+                    <td colspan="9">Nenhum evento encontrado</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+
+    <h2>Adicionar Novo Evento</h2>
+    <form action="/api/eventos" method="POST" id="createForm">
+        <div>
+            <label for="titulo">Nome:</label>
+            <input type="text" id="titulo" name="titulo" required>
+        </div>
+        <div>
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" rows="3"></textarea>
+        </div>
+        <div>
+            <label for="data">Data do Evento:</label>
+            <input type="datetime-local" id="data" name="data">
+        </div>
+        <div>
+            <label for="local">Local:</label>
+            <input type="text" id="local" name="local">
+        </div>
+        <div>
+            <label for="status">Status:</label>
+            <select id="status" name="status">
+                <option value="agendado">Agendado</option>
+                <option value="em andamento">Em andamento</option>
+                <option value="concluído">Concluído</option>
+                <option value="cancelado">Cancelado</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Salvar Evento</button>
+        </div>
+    </form>
+
+    <form action="/api/eventos" method="PUT" id="editForm" style="display:none;">
+        <input type="hidden" id="editId" name="id">
+        <div>
+            <label for="editTitulo">Nome:</label>
+            <input type="text" id="editTitulo" name="titulo" required>
+        </div>
+        <div>
+            <label for="editDescricao">Descrição:</label>
+            <textarea id="editDescricao" name="descricao" rows="3"></textarea>
+        </div>
+        <div>
+            <label for="editData">Data do Evento:</label>
+            <input type="datetime-local" id="editData" name="data">
+        </div>
+        <div>
+            <label for="editLocal">Local:</label>
+            <input type="text" id="editLocal" name="local">
+        </div>
+        <div>
+            <label for="editStatus">Status:</label>
+            <select id="editStatus" name="status">
+                <option value="agendado">Agendado</option>
+                <option value="em andamento">Em andamento</option>
+                <option value="concluído">Concluído</option>
+                <option value="cancelado">Cancelado</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Atualizar Evento</button>
+            <button type="button" onclick="hideEditForm()">Cancelar</button>
+        </div>
+    </form>
+
+    <script>
+        // Script básico para demonstrar interação com a API
+        document.getElementById('createForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = {
+                titulo: document.getElementById('titulo').value,
+                descricao: document.getElementById('descricao').value,
+                data: document.getElementById('data').value,
+                local: document.getElementById('local').value,
+                status: document.getElementById('status').value
+            };
+            
+            fetch('/api/eventos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Evento criado com sucesso!');
+                window.location.reload();
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao criar evento');
+            });
+        });
+
+        // Função para mostrar formulário de edição
+        function showEditForm(id, titulo, descricao, data, local, status) {
+            document.getElementById('editId').value = id;
+            document.getElementById('editTitulo').value = titulo;
+            document.getElementById('editDescricao').value = descricao;
+            document.getElementById('editData').value = data ? formatDateForInput(new Date(data)) : '';
+            document.getElementById('editLocal').value = local || '';
+            document.getElementById('editStatus').value = status;
+            document.getElementById('editForm').style.display = 'block';
+        }
+
+        // Função para formatar data para input datetime-local
+        function formatDateForInput(date) {
+            return date.toISOString().slice(0, 16);
+        }
+
+        // Função para esconder formulário de edição
+        function hideEditForm() {
+            document.getElementById('editForm').style.display = 'none';
+        }
+
+        // Adicionar event listeners para links de edição
+        document.addEventListener('DOMContentLoaded', function() {
+            const editLinks = document.querySelectorAll('a[href^="#edit-"]');
+            editLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const id = this.href.split('-')[1];
+                    const row = this.closest('tr');
+                    const titulo = row.cells[1].textContent;
+                    const descricao = row.cells[2].textContent === 'Sem descrição' ? '' : row.cells[2].textContent;
+                    const data = row.cells[3].textContent !== 'Não definida' ? new Date(row.cells[3].textContent) : null;
+                    const local = row.cells[4].textContent === 'Não definido' ? '' : row.cells[4].textContent;
+                    const status = row.cells[5].textContent;
+                    showEditForm(id, titulo, descricao, data, local, status);
+                });
+            });
+
+            // Configurar formulário de edição
+            document.getElementById('editForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const id = document.getElementById('editId').value;
+                const formData = {
+                    titulo: document.getElementById('editTitulo').value,
+                    descricao: document.getElementById('editDescricao').value,
+                    data: document.getElementById('editData').value,
+                    local: document.getElementById('editLocal').value,
+                    status: document.getElementById('editStatus').value
+                };
+                
+                fetch(`/api/eventos/${id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('Evento atualizado com sucesso!');
+                    window.location.reload();
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                    alert('Erro ao atualizar evento');
+                });
+            });
+
+            // Configurar links de exclusão
+            const deleteLinks = document.querySelectorAll('a[href^="#delete-"]');
+            deleteLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (confirm('Tem certeza que deseja excluir este evento?')) {
+                        const id = this.href.split('-')[1];
+                        
+                        fetch(`/api/eventos/${id}`, {
+                            method: 'DELETE'
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            alert('Evento excluído com sucesso!');
+                            window.location.reload();
+                        })
+                        .catch(error => {
+                            console.error('Erro:', error);
+                            alert('Erro ao excluir evento');
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

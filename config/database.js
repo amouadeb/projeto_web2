@@ -1,9 +1,9 @@
-// config/database.js
+
 require('dotenv').config();
 
 const { Pool } = require('pg');
 
-// Criando a pool de conexões
+
 const pool = new Pool({
   user: process.env.DB_USER || 'postgres',
   host: process.env.DB_HOST || 'localhost',
@@ -13,7 +13,7 @@ const pool = new Pool({
   ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false
 });
 
-// Teste de conexão
+
 pool.query('SELECT NOW()', (err, res) => {
   if (err) {
     console.error('Erro ao conectar ao banco de dados:', err);

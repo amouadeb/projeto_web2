@@ -1,4 +1,4 @@
-// controllers/EventoController.js
+
 const Evento = require('../models/Evento');
 
 /**
@@ -69,7 +69,7 @@ class EventoController {
     try {
       const { titulo, descricao, data, local, status } = req.body;
       
-      // Validação básica
+      
       if (!titulo) {
         return res.status(400).json({
           success: false,
@@ -77,7 +77,7 @@ class EventoController {
         });
       }
       
-      // Criar o evento
+      
       const evento = await Evento.create({
         titulo,
         descricao,
@@ -111,7 +111,7 @@ class EventoController {
       const eventoId = req.params.id;
       const { titulo, descricao, data, local, status } = req.body;
       
-      // Validação básica
+      
       if (!titulo) {
         return res.status(400).json({
           success: false,
@@ -119,7 +119,7 @@ class EventoController {
         });
       }
       
-      // Atualizar o evento
+      
       const eventoAtualizado = await Evento.update(eventoId, {
         titulo,
         descricao,

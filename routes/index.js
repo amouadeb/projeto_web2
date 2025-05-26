@@ -1,10 +1,10 @@
-// routes/index.js
+
 const express = require('express');
 const router = express.Router();
 const EventoController = require('../controllers/EventoController');
 const Evento = require('../models/Evento');
 
-// Rota para verificar status da API
+
 router.get('/', (req, res) => {
   res.status(200).json({
     success: true,
@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
   });
 });
 
-// Rota para visualização dos eventos
+
 router.get('/view/eventos', async (req, res) => {
   try {
     const eventos = await Evento.findAll();
@@ -31,7 +31,7 @@ router.get('/view/eventos', async (req, res) => {
   }
 });
 
-// Rotas para eventos
+
 router.get('/api/eventos', EventoController.listarEventos);
 router.get('/api/eventos/:id', EventoController.getEvento);
 router.post('/api/eventos', EventoController.criarEvento);
