@@ -22,27 +22,38 @@ projeto_web2/
 ├── assets/                # Recursos estáticos (imagens, diagramas etc.)
 │   ├── diagrama.png       # Diagrama do projeto
 │   └── modelagem.png      # Modelo de dados
+│
 ├── config/                # Arquivos de configuração
 │   └── database.js        # Conexão com o banco de dados
+│
 ├── controllers/           # Controladores da aplicação
 │   └── EventoController.js # Lógica dos endpoints de evento
+│
 ├── documents/             # Documentos e specs
 │   └── WAD.md             # Documento WAD
-├── migration/             # Scripts de migração do banco
-│   ├── 20250522init.sql   # Script de inicialização do schema
-│   └── script_sql.js      # Auxiliar de migração em JavaScript
+│
+├── html/                  # Em forma de ejs pra aplicação web
+│   └── eventos.ejs        # Página principal de eventos
+│
+├── migration/             # Scripts de migração e inicialização do banco
+│   ├── 20250522init.sql   # Script SQL para criar a estrutura inicial
+│   └── script_sql.js      # Script auxiliar para migrações
+│
 ├── models/                # Modelos de dados (ORM)
 │   └── Evento.js          # Definição do modelo Evento
-├── routes/                # Definição de rotas
+│
+├── node_modules/          # Dependências instaladas pelo npm
+│
+├── routes/                # Definição das rotas da aplicação
 │   └── index.js           # Rotas principais da API
-├── node_modules/          # Dependências instaladas
+│
 ├── .env                   # Variáveis de ambiente (não versionar)
-├── .env.example           # Exemplo de variáveis de ambiente
-├── .gitignore             # Arquivos/pastas ignorados pelo Git
-├── package-lock.json      # Versões exatas das dependências
+├── .env.example           # Exemplo de configuração do ambiente
+├── .gitignore             # Arquivos e pastas ignorados pelo Git
+├── package-lock.json      # Registro exato das versões das dependências
 ├── package.json           # Dependências e scripts do projeto
-└── README.md              # Documentação geral do projeto
-├── rest.http             # Coleção de requisições HTTP para testar a API
+├── README.md              # Documentação geral do projeto
+├── rest.http              # Arquivo para testar as rotas HTTP da API
 └── server.js              # Arquivo principal que inicializa o servidor
 
 ## Modelo do Banco de Dados
