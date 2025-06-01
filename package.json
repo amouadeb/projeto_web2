@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "init-db": "psql -U postgres -d event_platform -f init.sql"
+    "init-db": "psql -U postgres -d event_platform -f 20250522init.sql"
   },
   "keywords": [
     "express",
