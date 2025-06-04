@@ -1,38 +1,3 @@
-### Buscar todas as categorias
-GET http://localhost:3000/api/eventos
-
-### Buscar categoria por ID
-GET http://localhost:3000/api/eventos/:id
-
-### Criar nova categoria
-POST http://localhost:3000/api/eventos
-Content-Type: application/json
-
-{
-  "titulo": "Ariel",
-  "descricao": "Foda",
-  "local" : "Rua 1",
-  "data" : "2023-10-10",
-  "status" : "Pendente"
-}
-
-### Atualizar categoria
-PUT http://localhost:3000/api/eventos/:id
-
-Content-Type: application/json
-
-{
-  "titulo": "Ariel",
-  "descricao": "Foda",
-  "local" : "Rua 1",
-  "data" : "2023-10-10",
-  "status" : "Pendente"
-}
-
-### Deletar categoria
-DELETE http://localhost:3000/api/eventos/:id
-
-
 ///////// Usuarios /////////
 
 
@@ -71,6 +36,44 @@ Content-Type: application/json
 ### Deletar categoria
 DELETE http://localhost:3000/api/usuarios/:id
 
+
+
+///////// Eventos /////////
+
+
+### Buscar todas as categorias
+GET http://localhost:3000/api/eventos
+
+### Buscar categoria por ID
+GET http://localhost:3000/api/eventos/:id
+
+### Criar nova categoria
+POST http://localhost:3000/api/eventos
+Content-Type: application/json
+
+{
+  "titulo": "Ariel",
+  "descricao": "Foda",
+  "local" : "Rua 1",
+  "data" : "2023-10-10",
+  "status" : "Pendente"
+}
+
+### Atualizar categoria
+PUT http://localhost:3000/api/eventos/:id
+
+Content-Type: application/json
+
+{
+  "titulo": "Ariel",
+  "descricao": "Foda",
+  "local" : "Rua 1",
+  "data" : "2023-10-10",
+  "status" : "Pendente"
+}
+
+### Deletar categoria
+DELETE http://localhost:3000/api/eventos/:id
 
 
 

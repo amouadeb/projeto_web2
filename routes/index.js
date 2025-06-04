@@ -29,12 +29,6 @@ router.get('/', (req, res) => {
   });
 });
 
-// Rotas de Evento
-router.get('/api/eventos', EventoController.listarEventos);
-router.get('/api/eventos/:id', EventoController.getEvento);
-router.post('/api/eventos', EventoController.criarEvento);
-router.put('/api/eventos/:id', EventoController.atualizarEvento);
-router.delete('/api/eventos/:id', EventoController.excluirEvento);
 
 // Rotas de Usuário
 router.get('/api/usuarios', UsuarioController.listarUsuarios);
@@ -42,6 +36,14 @@ router.get('/api/usuarios/:id', UsuarioController.getUsuario);
 router.post('/api/usuarios', UsuarioController.criarUsuario);
 router.put('/api/usuarios/:id', UsuarioController.atualizarUsuario);
 router.delete('/api/usuarios/:id', UsuarioController.excluirUsuario);
+
+// Rotas de Evento
+router.get('/api/eventos', EventoController.listarEventos);
+router.get('/api/eventos/:id', EventoController.getEvento);
+router.post('/api/eventos', EventoController.criarEvento);
+router.put('/api/eventos/:id', EventoController.atualizarEvento);
+router.delete('/api/eventos/:id', EventoController.excluirEvento);
+
 
 // Rotas de Inscrição
 router.get('/api/inscricoes', InscricaoController.listarInscricoes);
