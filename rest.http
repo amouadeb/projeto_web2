@@ -20,9 +20,9 @@ GET http://localhost:3000/api/usuarios/:id
 POST http://localhost:3000/api/usuarios
 Content-Type: application/json
 
-{
- 
-}
+{ "nome": "Maria Silva",
+  "email": "maria@exemplo.com",
+  "senha": "senha123" }
 
 ### Atualizar categoria
 PUT http://localhost:3000/api/usuarios/:id
