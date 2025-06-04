@@ -31,3 +31,81 @@ Content-Type: application/json
 
 ### Deletar categoria
 DELETE http://localhost:3000/api/eventos/:id
+
+
+///////// Usuarios /////////
+
+
+
+### Buscar todas as categorias
+GET http://localhost:3000/api/usuarios
+
+{ "nome": "Maria Silva",
+  "email": "maria@exemplo.com",
+  "senha": "senha123"}
+
+### Buscar categoria por ID
+GET http://localhost:3000/api/usuarios/:id
+
+{
+
+}
+
+### Criar nova categoria
+POST http://localhost:3000/api/usuarios
+Content-Type: application/json
+
+{
+ 
+}
+
+### Atualizar categoria
+PUT http://localhost:3000/api/usuarios/:id
+
+Content-Type: application/json
+
+{
+  
+}
+
+### Deletar categoria
+DELETE http://localhost:3000/api/usuarios/:id
+
+
+
+
+///////// Inscirção /////////
+
+
+### Buscar todas as categorias
+GET http://localhost:3000/api/inscricoes
+
+{ "usuario_id": 1,
+  "evento_id": 2 }
+
+### Buscar categoria por ID
+GET http://localhost:3000/api/inscricoes/:id
+
+{
+
+}
+
+### Criar nova categoria
+POST http://localhost:3000/api/inscricoes
+Content-Type: application/json
+
+{
+ 
+}
+
+### Atualizar categoria
+PUT http://localhost:3000/api/inscricoes/:id
+
+Content-Type: application/json
+
+{
+  
+}
+
+### Deletar categoria
+DELETE http://localhost:3000/api/inscircoes/:id

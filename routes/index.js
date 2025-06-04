@@ -1,10 +1,11 @@
-
 const express = require('express');
 const router = express.Router();
+
 const EventoController = require('../controllers/EventoController');
-const Evento = require('../models/Evento');
+const UsuarioController = require('../controllers/UsuarioController');
+const InscricaoController = require('../controllers/InscriçãoController');
 
-
+// Rota raiz (status da API)
 router.get('/', (req, res) => {
   res.status(200).json({
     success: true,
@@ -15,27 +16,37 @@ router.get('/', (req, res) => {
       'POST /api/eventos': 'Criar um novo evento',
       'PUT /api/eventos/:id': 'Atualizar um evento existente',
       'DELETE /api/eventos/:id': 'Excluir um evento',
-      'GET /view/eventos': 'Visualizar interface de eventos'
+      'GET /api/usuarios': 'Listar todos os usuários',
+      'GET /api/usuarios/:id': 'Buscar um usuário específico',
+      'POST /api/usuarios': 'Criar um novo usuário',
+      'PUT /api/usuarios/:id': 'Atualizar um usuário existente',
+      'DELETE /api/usuarios/:id': 'Excluir um usuário',
+      'GET /api/inscricoes': 'Listar todas as inscrições',
+      'GET /api/inscricoes/:id': 'Buscar uma inscrição específica',
+      'POST /api/inscricoes': 'Criar uma nova inscrição',
+      'DELETE /api/inscricoes/:id': 'Excluir uma inscrição'
     }
   });
 });
 
-
-router.get('/view/eventos', async (req, res) => {
-  try {
-    const eventos = await Evento.findAll();
-    res.render('eventos', { eventos: eventos || [] });
-  } catch (error) {
-    console.error('Erro ao carregar eventos:', error);
-    res.render('eventos', { eventos: [] });
-  }
-});
-
-
+// Rotas de Evento
 router.get('/api/eventos', EventoController.listarEventos);
 router.get('/api/eventos/:id', EventoController.getEvento);
 router.post('/api/eventos', EventoController.criarEvento);
 router.put('/api/eventos/:id', EventoController.atualizarEvento);
 router.delete('/api/eventos/:id', EventoController.excluirEvento);
+
+// Rotas de Usuário
+router.get('/api/usuarios', UsuarioController.listarUsuarios);
+router.get('/api/usuarios/:id', UsuarioController.getUsuario);
+router.post('/api/usuarios', UsuarioController.criarUsuario);
+router.put('/api/usuarios/:id', UsuarioController.atualizarUsuario);
+router.delete('/api/usuarios/:id', UsuarioController.excluirUsuario);
+
+// Rotas de Inscrição
+router.get('/api/inscricoes', InscricaoController.listarInscricoes);
+router.get('/api/inscricoes/:id', InscricaoController.getInscricao);
+router.post('/api/inscricoes', InscricaoController.criarInscricao);
+router.delete('/api/inscricoes/:id', InscricaoController.excluirInscricao);
 
 module.exports = router;
