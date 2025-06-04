@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Evento - Sistema de Eventos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar h1 {
+            font-size: 1.5rem;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h2 {
+            color: #333;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group-inline {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .form-group-inline .form-group {
+            flex: 1;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .helper-text {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .required {
+            color: #dc3545;
+        }
+
+        .preview-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .preview-section h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .preview-item {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .preview-label {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-group-inline {
+                flex-direction: column;
+            }
+            
+            .form-actions {
+                flex-direction: column;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <h1>Sistema de Eventos</h1>
+        <a href="dashboard.html">← Voltar ao Dashboard</a>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h2>Criar Novo Evento</h2>
+            <p>Preencha as informações do seu evento</p>
+        </div>
+
+        <div class="form-container">
+            <form id="eventForm">
+                <div class="form-group">
+                    <label for="nome">Nome do Evento <span class="required">*</span></label>
+                    <input type="text" id="nome" name="nome" required maxlength="100" oninput="updatePreview()">
+                    <div class="helper-text">Digite um nome atrativo para seu evento (máx. 100 caracteres)</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao" name="descricao" placeholder="Descreva seu evento, objetivos, público-alvo, agenda..." oninput="updatePreview()"></textarea>
+                    <div class="helper-text">Forneça uma descrição detalhada para ajudar os participantes a entender o evento</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data_evento">Data do Evento <span class="required">*</span></label>
+                        <input type="date" id="data_evento" name="data_evento" required onchange="updatePreview()">
+                    </div>
+                    <div class="form-group">
+                        <label for="hora_evento">Horário <span class="required">*</span></label>
+                        <input type="time" id="hora_evento" name="hora_evento" required onchange="updatePreview()">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="local">Local do Evento <span class="required">*</span></label>
+                    <input type="text" id="local" name="local" required maxlength="100" placeholder="Ex: Auditório Principal, Rua das Flores, 123" oninput="updatePreview()">
+                    <div class="helper-text">Endereço completo ou nome do local (máx. 100 caracteres)</div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="capacidade">Capacidade Máxima</label>
+                        <input type="number" id="capacidade" name="capacidade" min="1" max="10000" placeholder="Ex: 50" oninput="updatePreview()">
+                        <div class="helper-text">Deixe em branco para capacidade ilimitada</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status Inicial</label>
+                        <select id="status" name="status" onchange="updatePreview()">
+                            <option value="agendado">Agendado</option>
+                            <option value="aberto">Inscrições Abertas</option>
+                            <option value="fechado">Inscrições Fechadas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="categoria">Categoria</label>
+                    <select id="categoria" name="categoria" onchange="updatePreview()">
+                        <option value="">Selecione uma categoria</option>
+                        <option value="tecnologia">Tecnologia</option>
+                        <option value="negocios">Negócios</option>
+                        <option value="educacao">Educação</option>
+                        <option value="saude">Saúde</option>
+                        <option value="arte">Arte e Cultura</option>
+                        <option value="esporte">Esporte</option>
+                        <option value="networking">Networking</option>
+                        <option value="workshop">Workshop</option>
+                        <option value="palestra">Palestra</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="preco">Preço (R$)</label>
+                        <input type="number" id="preco" name="preco" min="0" step="0.01" placeholder="0.00" oninput="updatePreview()">
+                        <div class="helper-text">Deixe 0 ou em branco para evento gratuito</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="duracao">Duração (horas)</label>
+                        <input type="number" id="duracao" name="duracao" min="0.5" step="0.5" placeholder="2" oninput="updatePreview()">
+                        <div class="helper-text">Duração estimada do evento</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="requisitos">Pré-requisitos</label>
+                    <textarea id="requisitos" name="requisitos" placeholder="Conhecimentos necessários, materiais que os participantes devem trazer, etc." oninput="updatePreview()"></textarea>
+                    <div class="helper-text">Informe se há algum requisito especial para participação</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contato">Informações de Contato</label>
+                    <input type="text" id="contato" name="contato" placeholder="Email ou telefone para dúvidas" oninput="updatePreview()">
+                    <div class="helper-text">Email ou telefone para os participantes entrarem em contato</div>
+                </div>
+
+                <div class="preview-section">
+                    <h3>🔍 Pré-visualização do Evento</h3>
+                    <div id="preview-content">
+                        <div class="preview-item"><span class="preview-label">Nome:</span> <span id="preview-nome">-</span></div>
+                        <div class="preview-item"><span class="preview-label">Data:</span> <span id="preview-data">-</span></div>
+                        <div class="preview-item"><span class="preview-label">Local:</span> <span id="preview-local">-</span></div>
+                        <div class="preview-item"><span class="preview-label">Status:</span> <span id="preview-status">Agendado</span></div>
+                        <div class="preview-item"><span class="preview-label">Descrição:</span> <span id="preview-descricao">-</span></div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="resetForm()">Limpar Formulário</button>
+                    <button type="button" class="btn btn-secondary" onclick="saveDraft()">Salvar Rascunho</button>
+                    <button type="submit" class="btn btn-primary">Criar Evento</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Função para atualizar a pré-visualização
+        function updatePreview() {
+            const nome = document.getElementById('nome').value || '-';
+            const dataEvento = document.getElementById('data_evento').value;
+            const horaEvento = document.getElementById('hora_evento').value;
+            const local = document.getElementById('local').value || '-';
+            const status = document.getElementById('status').value || 'Agendado';
+            const descricao = document.getElementById('descricao').value || '-';
+
+            document.getElementById('preview-nome').textContent = nome;
+            document.getElementById('preview-local').textContent = local;
+            document.getElementById('preview-status').textContent = status.charAt(0).toUpperCase() + status.slice(1);
+            document.getElementById('preview-descricao').textContent = descricao.length > 100 ? descricao.substring(0, 100) + '...' : descricao;
+
+            // Formatar data e hora
+            let dataFormatada = '-';
+            if (dataEvento) {
+                const data = new Date(dataEvento + 'T00:00:00');
+                dataFormatada = data.toLocaleDateString('pt-BR');
+                if (horaEvento) {
+                    dataFormatada += ' às ' + horaEvento;
+                }
+            }
+            document.getElementById('preview-data').textContent = dataFormatada;
+        }
+
+        // Função para resetar o formulário
+        function resetForm() {
+            if (confirm('Tem certeza que deseja limpar todos os campos?')) {
+                document.getElementById('eventForm').reset();
+                updatePreview();
+            }
+        }
+
+        // Função para salvar rascunho
+        function saveDraft() {
+            const formData = new FormData(document.getElementById('eventForm'));
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                data[key] = value;
+            }
+            
+            // Salvar no localStorage (simulando)
+            const drafts = JSON.parse(localStorage.getItem('eventDrafts') || '[]');
+            data.id = Date.now();
+            data.savedAt = new Date().toISOString();
+            drafts.push(data);
+            localStorage.setItem('eventDrafts', JSON.stringify(drafts));
+            
+            alert('Rascunho salvo com sucesso!');
+        }
+
+        // Função para carregar rascunho (se existir)
+        function loadDraft() {
+            const drafts = JSON.parse(localStorage.getItem('eventDrafts') || '[]');
+            if (drafts.length > 0) {
+                const lastDraft = drafts[drafts.length - 1];
+                if (confirm('Encontramos um rascunho salvo. Deseja carregá-lo?')) {
+                    Object.keys(lastDraft).forEach(key => {
+                        const field = document.getElementById(key);
+                        if (field && key !== 'id' && key !== 'savedAt') {
+                            field.value = lastDraft[key];
+                        }
+                    });
+                    updatePreview();
+                }
+            }
+        }
+
+        // Validação e envio do formulário
+        document.getElementById('eventForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validações básicas
+            const nome = document.getElementById('nome').value.trim();
+            const dataEvento = document.getElementById('data_evento').value;
+            const horaEvento = document.getElementById('hora_evento').value;
+            const local = document.getElementById('local').value.trim();
+
+            if (!nome || !dataEvento || !horaEvento || !local) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            // Validar se a data não é no passado
+            const eventDateTime = new Date(dataEvento + 'T' + horaEvento);
+            const now = new Date();
+            
+            if (eventDateTime <= now) {
+                alert('A data e hora do evento devem ser futuras.');
+                return;
+            }
+
+            // Simular criação do evento
+            const formData = new FormData(this);
+            const eventData = {};
+            for (let [key, value] of formData.entries()) {
+                eventData[key] = value;
+            }
+
+            console.log('Dados do evento:', eventData);
+            
+            // Simular sucesso
+            alert('Evento criado com sucesso!');
+            
+            // Limpar rascunhos salvos
+            localStorage.removeItem('eventDrafts');
+            
+            // Redirecionar para dashboard
+            window.location.href = 'dashboard.html';
+        });
+
+        // Configurar data mínima como hoje
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('data_evento').min = today;
+            
+            // Tentar carregar rascunho
+            loadDraft();
+            
+            // Atualizar preview inicial
+            updatePreview();
+        });
+
+        // Auto-save enquanto o usuário digita (opcional)
+        let autoSaveTimeout;
+        document.querySelectorAll('input, textarea, select').forEach(field => {
+            field.addEventListener('input', function() {
+                clearTimeout(autoSaveTimeout);
+                autoSaveTimeout = setTimeout(() => {
+                    // Auto-save silencioso (sem alerta)
+                    const formData = new FormData(document.getElementById('eventForm'));
+                    const data = {};
+                    for (let [key, value] of formData.entries()) {
+                        data[key] = value;
+                    }
+                    sessionStorage.setItem('currentEventDraft', JSON.stringify(data));
+                }, 2000); // Salva após 2 segundos de inatividade
+            });
+        });
+    </script>
+</body>
+</html>
