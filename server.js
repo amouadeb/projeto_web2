@@ -14,7 +14,10 @@ app.set('views', './views');
 
 
 const routes = require('./routes/index');
-app.use('/', routes);
+app.use(routes);
+
+
+
 
 
 

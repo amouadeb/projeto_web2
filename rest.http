@@ -1,114 +1,97 @@
 ///////// Usuarios /////////
 
-
-
-### Buscar todas as categorias
+### Buscar todos os usuários
 GET http://localhost:3000/api/usuarios
 
-{ "nome": "Maria Silva",
-  "email": "maria@exemplo.com",
-  "senha": "senha123"}
+### Buscar usuário por ID
+GET http://localhost:3000/api/usuarios/1
 
-### Buscar categoria por ID
-GET http://localhost:3000/api/usuarios/:id
-
-{
-
-}
-
-### Criar nova categoria
+### Criar novo usuário
 POST http://localhost:3000/api/usuarios
 Content-Type: application/json
 
-{ "nome": "Maria Silva",
-  "email": "maria@exemplo.com",
-  "senha": "senha123" }
+{
+  "nome": "Ariel Mouadeb",
+  "email": "amouadeb2006@gmail.com",
+  "senha": "segredo123"
+}
 
-### Atualizar categoria
-PUT http://localhost:3000/api/usuarios/:id
-
+### Atualizar usuário
+PUT http://localhost:3000/api/usuarios/1
 Content-Type: application/json
 
 {
-  
+  "nome": "Ariel Atualizado",
+  "email": "atualizado@gmail.com"
 }
 
-### Deletar categoria
-DELETE http://localhost:3000/api/usuarios/:id
+### Deletar usuário
+DELETE http://localhost:3000/api/usuarios/1
 
 
 
 ///////// Eventos /////////
 
-
-### Buscar todas as categorias
+### Buscar todos os eventos
 GET http://localhost:3000/api/eventos
 
-### Buscar categoria por ID
-GET http://localhost:3000/api/eventos/:id
+### Buscar evento por ID
+GET http://localhost:3000/api/eventos/1
 
-### Criar nova categoria
+### Criar novo evento
 POST http://localhost:3000/api/eventos
 Content-Type: application/json
 
 {
-  "titulo": "Ariel",
-  "descricao": "Foda",
-  "local" : "Rua 1",
-  "data" : "2023-10-10",
-  "status" : "Pendente"
+  "titulo": "Jogo do Palmeiras",
+  "descricao": "Venha assistir o jogo do Palmeiras, em sua ultima partida antes do mundial de clubes",
+  "local": "Rua Turiassu 1840",
+  "data": "2025-06-03",
+  "status": "Aguardando"
 }
 
-### Atualizar categoria
-PUT http://localhost:3000/api/eventos/:id
-
+### Atualizar evento
+PUT http://localhost:3000/api/eventos/1
 Content-Type: application/json
 
 {
-  "titulo": "Ariel",
-  "descricao": "Foda",
-  "local" : "Rua 1",
-  "data" : "2023-10-10",
-  "status" : "Pendente"
+  "titulo": "Jogo do Palmeiras - Atualizado",
+  "descricao": "Jogo decisivo!",
+  "local": "Rua Palestra Itália 1000",
+  "data": "2025-06-04",
+  "status": "Confirmado"
 }
 
-### Deletar categoria
-DELETE http://localhost:3000/api/eventos/:id
+### Deletar evento
+DELETE http://localhost:3000/api/eventos/1
 
 
 
-///////// Inscirção /////////
+///////// Inscrições /////////
 
-
-### Buscar todas as categorias
+### Buscar todas as inscrições
 GET http://localhost:3000/api/inscricoes
 
-{ "usuario_id": 1,
-  "evento_id": 2 }
+### Buscar inscrição por ID
+GET http://localhost:3000/api/inscricoes/1
 
-### Buscar categoria por ID
-GET http://localhost:3000/api/inscricoes/:id
-
-{
-
-}
-
-### Criar nova categoria
+### Criar nova inscrição
 POST http://localhost:3000/api/inscricoes
 Content-Type: application/json
 
 {
- 
+  "usuario_id": 1,
+  "evento_id": 2
 }
 
-### Atualizar categoria
-PUT http://localhost:3000/api/inscricoes/:id
-
+### Atualizar inscrição
+PUT http://localhost:3000/api/inscricoes/1
 Content-Type: application/json
 
 {
-  
+  "usuario_id": 1,
+  "evento_id": 3
 }
 
-### Deletar categoria
-DELETE http://localhost:3000/api/inscircoes/:id
+### Deletar inscrição
+DELETE http://localhost:3000/api/inscricoes/1
