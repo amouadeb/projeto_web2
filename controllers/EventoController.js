@@ -18,6 +18,7 @@ class EventoController {
         message: 'Eventos recuperados com sucesso',
         data: eventos
       });
+      res.render('Eventoss', { eventos });
     } catch (error) {
       console.error('Erro ao listar eventos:', error);
       res.status(500).json({
