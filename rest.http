@@ -11,8 +11,8 @@ POST http://localhost:3000/api/usuarios
 Content-Type: application/json
 
 {
-  "nome": "Ariel Mouadeb",
-  "email": "amouadeb2006@gmail.com",
+  "nome": "Ariel Mouadebs",
+  "email": "amouadeb20067@gmail.com",
   "senha": "segredo123"
 }
 
@@ -22,7 +22,7 @@ Content-Type: application/json
 
 {
   "nome": "Ariel Atualizado",
-  "email": "ariel2@gmail.com",
+  "email": "ariel24@gmail.com",
   "senha": "segredo456"
 }
 

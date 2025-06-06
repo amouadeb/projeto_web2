@@ -20,9 +20,7 @@ app.set('view engine', 'ejs');
 const routes = require('./routes/index');
 app.use(routes);
 
-
-
-
+app.use(express.static(path.join(__dirname, 'views')));
 
 
 app.use((err, req, res, next) => {
