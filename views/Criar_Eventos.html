@@ -45,7 +45,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 600px;
             margin: 0 auto;
             padding: 2rem;
         }
@@ -110,21 +110,6 @@
             min-height: 120px;
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .form-group-inline {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .form-group-inline .form-group {
-            flex: 1;
-        }
-
         .btn {
             padding: 14px 28px;
             border: none;
@@ -167,16 +152,6 @@
             border-top: 1px solid #e9ecef;
         }
 
-        .helper-text {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 0.25rem;
-        }
-
-        .required {
-            color: #dc3545;
-        }
-
         .preview-section {
             background: #f8f9fa;
             border-radius: 10px;
@@ -201,18 +176,9 @@
         }
 
         @media (max-width: 768px) {
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-            
-            .form-group-inline {
-                flex-direction: column;
-            }
-            
             .form-actions {
                 flex-direction: column;
             }
-            
             .container {
                 padding: 1rem;
             }
@@ -222,118 +188,64 @@
 <body>
     <nav class="navbar">
         <h1>Sistema de Eventos</h1>
-        <a href="dashboard.html">← Voltar ao Dashboard</a>
+        <a href="dashboard.html">← Voltar</a>
     </nav>
 
     <div class="container">
         <div class="header">
             <h2>Criar Novo Evento</h2>
-            <p>Preencha as informações do seu evento</p>
+            <p>Preencha as informações essenciais</p>
         </div>
 
         <div class="form-container">
             <form id="eventForm">
+                <!-- TÍTULO -->
                 <div class="form-group">
-                    <label for="nome">Nome do Evento <span class="required">*</span></label>
-                    <input type="text" id="nome" name="nome" required maxlength="100" oninput="updatePreview()">
-                    <div class="helper-text">Digite um nome atrativo para seu evento (máx. 100 caracteres)</div>
+                    <label for="titulo">Título do Evento <span class="required">*</span></label>
+                    <input type="text" id="titulo" name="titulo" required maxlength="100" oninput="updatePreview()">
                 </div>
 
+                <!-- DESCRIÇÃO -->
                 <div class="form-group">
                     <label for="descricao">Descrição</label>
-                    <textarea id="descricao" name="descricao" placeholder="Descreva seu evento, objetivos, público-alvo, agenda..." oninput="updatePreview()"></textarea>
-                    <div class="helper-text">Forneça uma descrição detalhada para ajudar os participantes a entender o evento</div>
+                    <textarea id="descricao" name="descricao" oninput="updatePreview()"></textarea>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="data_evento">Data do Evento <span class="required">*</span></label>
-                        <input type="date" id="data_evento" name="data_evento" required onchange="updatePreview()">
-                    </div>
-                    <div class="form-group">
-                        <label for="hora_evento">Horário <span class="required">*</span></label>
-                        <input type="time" id="hora_evento" name="hora_evento" required onchange="updatePreview()">
-                    </div>
-                </div>
-
+                <!-- LOCAL -->
                 <div class="form-group">
                     <label for="local">Local do Evento <span class="required">*</span></label>
-                    <input type="text" id="local" name="local" required maxlength="100" placeholder="Ex: Auditório Principal, Rua das Flores, 123" oninput="updatePreview()">
-                    <div class="helper-text">Endereço completo ou nome do local (máx. 100 caracteres)</div>
+                    <input type="text" id="local" name="local" required maxlength="100" oninput="updatePreview()">
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="capacidade">Capacidade Máxima</label>
-                        <input type="number" id="capacidade" name="capacidade" min="1" max="10000" placeholder="Ex: 50" oninput="updatePreview()">
-                        <div class="helper-text">Deixe em branco para capacidade ilimitada</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Status Inicial</label>
-                        <select id="status" name="status" onchange="updatePreview()">
-                            <option value="agendado">Agendado</option>
-                            <option value="aberto">Inscrições Abertas</option>
-                            <option value="fechado">Inscrições Fechadas</option>
-                        </select>
-                    </div>
-                </div>
-
+                <!-- DATA -->
                 <div class="form-group">
-                    <label for="categoria">Categoria</label>
-                    <select id="categoria" name="categoria" onchange="updatePreview()">
-                        <option value="">Selecione uma categoria</option>
-                        <option value="tecnologia">Tecnologia</option>
-                        <option value="negocios">Negócios</option>
-                        <option value="educacao">Educação</option>
-                        <option value="saude">Saúde</option>
-                        <option value="arte">Arte e Cultura</option>
-                        <option value="esporte">Esporte</option>
-                        <option value="networking">Networking</option>
-                        <option value="workshop">Workshop</option>
-                        <option value="palestra">Palestra</option>
-                        <option value="outro">Outro</option>
+                    <label for="data_evento">Data do Evento <span class="required">*</span></label>
+                    <input type="date" id="data_evento" name="data_evento" required onchange="updatePreview()">
+                </div>
+
+                <!-- STATUS -->
+                <div class="form-group">
+                    <label for="status">Status Inicial</label>
+                    <select id="status" name="status" onchange="updatePreview()">
+                        <option value="agendado">Agendado</option>
+                        <option value="aberto">Inscrições Abertas</option>
+                        <option value="fechado">Inscrições Fechadas</option>
                     </select>
                 </div>
 
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="preco">Preço (R$)</label>
-                        <input type="number" id="preco" name="preco" min="0" step="0.01" placeholder="0.00" oninput="updatePreview()">
-                        <div class="helper-text">Deixe 0 ou em branco para evento gratuito</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="duracao">Duração (horas)</label>
-                        <input type="number" id="duracao" name="duracao" min="0.5" step="0.5" placeholder="2" oninput="updatePreview()">
-                        <div class="helper-text">Duração estimada do evento</div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="requisitos">Pré-requisitos</label>
-                    <textarea id="requisitos" name="requisitos" placeholder="Conhecimentos necessários, materiais que os participantes devem trazer, etc." oninput="updatePreview()"></textarea>
-                    <div class="helper-text">Informe se há algum requisito especial para participação</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="contato">Informações de Contato</label>
-                    <input type="text" id="contato" name="contato" placeholder="Email ou telefone para dúvidas" oninput="updatePreview()">
-                    <div class="helper-text">Email ou telefone para os participantes entrarem em contato</div>
-                </div>
-
+                <!-- PRÉ-VISUALIZAÇÃO SIMPLIFICADA -->
                 <div class="preview-section">
-                    <h3>🔍 Pré-visualização do Evento</h3>
-                    <div id="preview-content">
-                        <div class="preview-item"><span class="preview-label">Nome:</span> <span id="preview-nome">-</span></div>
-                        <div class="preview-item"><span class="preview-label">Data:</span> <span id="preview-data">-</span></div>
-                        <div class="preview-item"><span class="preview-label">Local:</span> <span id="preview-local">-</span></div>
-                        <div class="preview-item"><span class="preview-label">Status:</span> <span id="preview-status">Agendado</span></div>
-                        <div class="preview-item"><span class="preview-label">Descrição:</span> <span id="preview-descricao">-</span></div>
-                    </div>
+                    <h3>🔍 Pré-visualização</h3>
+                    <div class="preview-item"><span class="preview-label">Título:</span> <span id="preview-titulo">-</span></div>
+                    <div class="preview-item"><span class="preview-label">Data:</span> <span id="preview-data">-</span></div>
+                    <div class="preview-item"><span class="preview-label">Local:</span> <span id="preview-local">-</span></div>
+                    <div class="preview-item"><span class="preview-label">Status:</span> <span id="preview-status">Agendado</span></div>
+                    <div class="preview-item"><span class="preview-label">Descrição:</span> <span id="preview-descricao">-</span></div>
                 </div>
 
+                <!-- AÇÕES -->
                 <div class="form-actions">
-                    <button type="button" class="btn btn-secondary" onclick="resetForm()">Limpar Formulário</button>
-                    <button type="button" class="btn btn-secondary" onclick="saveDraft()">Salvar Rascunho</button>
+                    <button type="button" class="btn btn-secondary" onclick="resetForm()">Limpar</button>
                     <button type="submit" class="btn btn-primary">Criar Evento</button>
                 </div>
             </form>
@@ -341,145 +253,65 @@
     </div>
 
     <script>
-        // Função para atualizar a pré-visualização
         function updatePreview() {
-            const nome = document.getElementById('nome').value || '-';
-            const dataEvento = document.getElementById('data_evento').value;
-            const horaEvento = document.getElementById('hora_evento').value;
+            const titulo = document.getElementById('titulo').value || '-';
+            const data = document.getElementById('data_evento').value;
             const local = document.getElementById('local').value || '-';
             const status = document.getElementById('status').value || 'Agendado';
             const descricao = document.getElementById('descricao').value || '-';
 
-            document.getElementById('preview-nome').textContent = nome;
+            document.getElementById('preview-titulo').textContent = titulo;
             document.getElementById('preview-local').textContent = local;
             document.getElementById('preview-status').textContent = status.charAt(0).toUpperCase() + status.slice(1);
             document.getElementById('preview-descricao').textContent = descricao.length > 100 ? descricao.substring(0, 100) + '...' : descricao;
 
-            // Formatar data e hora
             let dataFormatada = '-';
-            if (dataEvento) {
-                const data = new Date(dataEvento + 'T00:00:00');
-                dataFormatada = data.toLocaleDateString('pt-BR');
-                if (horaEvento) {
-                    dataFormatada += ' às ' + horaEvento;
-                }
+            if (data) {
+                const d = new Date(data + 'T00:00:00');
+                dataFormatada = d.toLocaleDateString('pt-BR');
             }
             document.getElementById('preview-data').textContent = dataFormatada;
         }
 
-        // Função para resetar o formulário
         function resetForm() {
-            if (confirm('Tem certeza que deseja limpar todos os campos?')) {
+            if (confirm('Limpar todos os campos?')) {
                 document.getElementById('eventForm').reset();
                 updatePreview();
             }
         }
 
-        // Função para salvar rascunho
-        function saveDraft() {
-            const formData = new FormData(document.getElementById('eventForm'));
-            const data = {};
-            for (let [key, value] of formData.entries()) {
-                data[key] = value;
-            }
-            
-            // Salvar no localStorage (simulando)
-            const drafts = JSON.parse(localStorage.getItem('eventDrafts') || '[]');
-            data.id = Date.now();
-            data.savedAt = new Date().toISOString();
-            drafts.push(data);
-            localStorage.setItem('eventDrafts', JSON.stringify(drafts));
-            
-            alert('Rascunho salvo com sucesso!');
-        }
-
-        // Função para carregar rascunho (se existir)
-        function loadDraft() {
-            const drafts = JSON.parse(localStorage.getItem('eventDrafts') || '[]');
-            if (drafts.length > 0) {
-                const lastDraft = drafts[drafts.length - 1];
-                if (confirm('Encontramos um rascunho salvo. Deseja carregá-lo?')) {
-                    Object.keys(lastDraft).forEach(key => {
-                        const field = document.getElementById(key);
-                        if (field && key !== 'id' && key !== 'savedAt') {
-                            field.value = lastDraft[key];
-                        }
-                    });
-                    updatePreview();
-                }
-            }
-        }
-
-        // Validação e envio do formulário
         document.getElementById('eventForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Validações básicas
-            const nome = document.getElementById('nome').value.trim();
-            const dataEvento = document.getElementById('data_evento').value;
-            const horaEvento = document.getElementById('hora_evento').value;
+            const titulo = document.getElementById('titulo').value.trim();
+            const data = document.getElementById('data_evento').value;
             const local = document.getElementById('local').value.trim();
 
-            if (!nome || !dataEvento || !horaEvento || !local) {
-                alert('Por favor, preencha todos os campos obrigatórios.');
+            if (!titulo || !data || !local) {
+                alert('Preencha todos os campos obrigatórios.');
                 return;
             }
 
-            // Validar se a data não é no passado
-            const eventDateTime = new Date(dataEvento + 'T' + horaEvento);
+            const eventDate = new Date(data + 'T00:00:00');
             const now = new Date();
-            
-            if (eventDateTime <= now) {
-                alert('A data e hora do evento devem ser futuras.');
+            if (eventDate <= now) {
+                alert('A data deve ser futura.');
                 return;
             }
 
-            // Simular criação do evento
             const formData = new FormData(this);
             const eventData = {};
             for (let [key, value] of formData.entries()) {
                 eventData[key] = value;
             }
-
             console.log('Dados do evento:', eventData);
-            
-            // Simular sucesso
             alert('Evento criado com sucesso!');
-            
-            // Limpar rascunhos salvos
-            localStorage.removeItem('eventDrafts');
-            
-            // Redirecionar para dashboard
             window.location.href = 'dashboard.html';
         });
 
-        // Configurar data mínima como hoje
         document.addEventListener('DOMContentLoaded', function() {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('data_evento').min = today;
-            
-            // Tentar carregar rascunho
-            loadDraft();
-            
-            // Atualizar preview inicial
             updatePreview();
-        });
-
-        // Auto-save enquanto o usuário digita (opcional)
-        let autoSaveTimeout;
-        document.querySelectorAll('input, textarea, select').forEach(field => {
-            field.addEventListener('input', function() {
-                clearTimeout(autoSaveTimeout);
-                autoSaveTimeout = setTimeout(() => {
-                    // Auto-save silencioso (sem alerta)
-                    const formData = new FormData(document.getElementById('eventForm'));
-                    const data = {};
-                    for (let [key, value] of formData.entries()) {
-                        data[key] = value;
-                    }
-                    sessionStorage.setItem('currentEventDraft', JSON.stringify(data));
-                }, 2000); // Salva após 2 segundos de inatividade
-            });
         });
     </script>
 </body>
