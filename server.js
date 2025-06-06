@@ -1,6 +1,3 @@
-
-
-
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
@@ -10,6 +7,9 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+const cors = require('cors');
+app.use(cors());
 
 app.set('html', path.join(__dirname, 'html'));
 

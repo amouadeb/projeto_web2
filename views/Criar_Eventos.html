@@ -285,7 +285,7 @@
             const titulo = document.getElementById('titulo').value.trim();
             const data = document.getElementById('data_evento').value;
             const local = document.getElementById('local').value.trim();
-
+            // pegar status e descrição
             if (!titulo || !data || !local) {
                 alert('Preencha todos os campos obrigatórios.');
                 return;
@@ -303,8 +303,30 @@
             for (let [key, value] of formData.entries()) {
                 eventData[key] = value;
             }
-            console.log('Dados do evento:', eventData);
-            alert('Evento criado com sucesso!');
+            //console.log('Dados do evento:', eventData);
+            //alert('Evento criado com sucesso!');
+            // substutir o alert por um fetch na rota
+            // router.post('/api/eventos', EventoController.criarEvento);
+            // esperar a resposta da api e informar o usuário e redirecionar para o dashboard
+            fetch('http://localhost:3000/api/eventos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(eventData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao criar evento');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data); // Mostra a resposta da API no console do navegador
+            })
+            .catch(error => {
+                console.error(error);
+            });
             window.location.href = 'dashboard.html';
         });
 
