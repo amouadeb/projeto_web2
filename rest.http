@@ -22,7 +22,8 @@ Content-Type: application/json
 
 {
   "nome": "Ariel Atualizado",
-  "email": "atualizado@gmail.com"
+  "email": "ariel2@gmail.com",
+  "senha": "segredo456"
 }
 
 ### Deletar usuário
