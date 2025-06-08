@@ -1,4 +1,4 @@
--- 1. Cria tabela de usuários primeiro (porque eventos e inscrições dependem dela)
+
 CREATE TABLE IF NOT EXISTS usuarios (
   id         SERIAL PRIMARY KEY,
   nome       VARCHAR(100) NOT NULL,
@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
   criado_em  TIMESTAMP      DEFAULT CURRENT_TIMESTAMP
 );
 
--- 2. Cria tabela de eventos (não depende de inscrições, mas referenciará usuários como organizador)
+
 CREATE TABLE IF NOT EXISTS eventos (
   id             SERIAL PRIMARY KEY,
   nome           VARCHAR(100)   NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS eventos (
   updated_at     TIMESTAMP      DEFAULT CURRENT_TIMESTAMP
 );
 
--- 3. Cria tabela de inscrições (depende de usuários e de eventos)
+
 CREATE TABLE IF NOT EXISTS inscricoes (
   id            SERIAL PRIMARY KEY,
   usuario_id    INTEGER REFERENCES usuarios(id),
