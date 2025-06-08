@@ -175,12 +175,81 @@
             color: #667eea;
         }
 
+        /* Estilos para o alerta de sucesso */
+        .success-alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .success-alert.show {
+            transform: translateX(0);
+        }
+
+        .success-alert .icon {
+            font-size: 1.2rem;
+        }
+
+        .success-alert .message {
+            font-weight: 600;
+        }
+
+        .error-alert {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .error-alert.show {
+            transform: translateX(0);
+        }
+
+        .error-alert .icon {
+            font-size: 1.2rem;
+        }
+
+        .error-alert .message {
+            font-weight: 600;
+        }
+
         @media (max-width: 768px) {
             .form-actions {
                 flex-direction: column;
             }
             .container {
                 padding: 1rem;
+            }
+            .success-alert,
+            .error-alert {
+                right: 10px;
+                left: 10px;
+                transform: translateY(-100px);
+            }
+            .success-alert.show,
+            .error-alert.show {
+                transform: translateY(0);
             }
         }
     </style>
@@ -280,21 +349,47 @@
             }
         }
 
+        function showAlert(message, type = 'success') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = type === 'success' ? 'success-alert' : 'error-alert';
+            
+            const icon = type === 'success' ? '✅' : '❌';
+            alertDiv.innerHTML = `
+                <span class="icon">${icon}</span>
+                <span class="message">${message}</span>
+            `;
+            
+            document.body.appendChild(alertDiv);
+            
+            // Mostrar o alerta com animação
+            setTimeout(() => {
+                alertDiv.classList.add('show');
+            }, 100);
+            
+            // Remover o alerta após 3 segundos
+            setTimeout(() => {
+                alertDiv.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(alertDiv);
+                }, 300);
+            }, 3000);
+        }
+
         document.getElementById('eventForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const titulo = document.getElementById('titulo').value.trim();
             const data = document.getElementById('data_evento').value;
             const local = document.getElementById('local').value.trim();
-            // pegar status e descrição
+            
             if (!titulo || !data || !local) {
-                alert('Preencha todos os campos obrigatórios.');
+                showAlert('Preencha todos os campos obrigatórios.', 'error');
                 return;
             }
 
             const eventDate = new Date(data + 'T00:00:00');
             const now = new Date();
             if (eventDate <= now) {
-                alert('A data deve ser futura.');
+                showAlert('A data deve ser futura.', 'error');
                 return;
             }
 
@@ -303,11 +398,8 @@
             for (let [key, value] of formData.entries()) {
                 eventData[key] = value;
             }
-            //console.log('Dados do evento:', eventData);
-            //alert('Evento criado com sucesso!');
-            // substutir o alert por um fetch na rota
-            // router.post('/api/eventos', EventoController.criarEvento);
-            // esperar a resposta da api e informar o usuário e redirecionar para o dashboard
+
+            // Fazer a requisição para criar o evento
             fetch('http://localhost:3000/api/eventos', {
                 method: 'POST',
                 headers: {
@@ -322,12 +414,19 @@
                 return response.json();
             })
             .then(data => {
-                console.log(data); // Mostra a resposta da API no console do navegador
+                console.log(data);
+                // Mostrar alerta de sucesso
+                showAlert('Evento criado com sucesso!', 'success');
+                
+                // Redirecionar após 2 segundos para dar tempo de ver o alerta
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 2000);
             })
             .catch(error => {
                 console.error(error);
+                showAlert('Erro ao criar evento. Tente novamente.', 'error');
             });
-            window.location.href = 'dashboard.html';
         });
 
         document.addEventListener('DOMContentLoaded', function() {

@@ -149,8 +149,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Sistema de Eventos</h1>
-            <p>Gerencie e participe de eventos incríveis</p>
+            <h1>Mega Sistema de Eventos de Ariel</h1>
+            <p>Afonso chora ao saber que vai ter que me dar nota boa</p>
         </div>
 
         <div class="form-container">
@@ -162,6 +162,11 @@
             <!-- Formulário de Login -->
             <div id="loginForm" class="form-section active">
                 <form>
+                    <!-- NOVO CAMPO Nome -->
+                    <div class="form-group">
+                        <label for="loginNome">Nome</label>
+                        <input type="text" id="loginNome" name="nome" required>
+                    </div>
                     <div class="form-group">
                         <label for="loginEmail">Email</label>
                         <input type="email" id="loginEmail" name="email" required>
@@ -171,7 +176,6 @@
                         <input type="password" id="loginSenha" name="senha" required>
                     </div>
                     <button type="submit" class="btn">Entrar</button>
-                    <a href="Criar_Eventos.html">Esqueceu sua senha?</a>
                 </form>
                 <div class="forgot-password">
                     <a href="">Esqueceu sua senha?</a>
@@ -218,7 +222,7 @@
             document.querySelectorAll('.tab-button')[0].classList.remove('active');
         }
 
-        // Validação de formulários
+        
         document.getElementById('cadastroForm').querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
             const senha = document.getElementById('cadastroSenha').value;
@@ -230,8 +234,10 @@
             }
             
             alert('Cadastro realizado com sucesso!');
-            // Aqui você faria a requisição para o backend
+            
         });
+
+        
 
         document.getElementById('loginForm').querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
