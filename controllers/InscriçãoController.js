@@ -1,4 +1,11 @@
 const Inscricao = require('../models/Inscrição');
+const Joi = require('joi');
+
+const inscricaoSchema = Joi.object({
+  usuario_id: Joi.number().integer().required(),
+  evento_id: Joi.number().integer().required()
+});
+
 
 class InscricaoController {
   /**
@@ -52,29 +59,18 @@ class InscricaoController {
    * Cria uma nova inscrição
    */
   static async criarInscricao(req, res) {
-    const { usuario_id, evento_id } = req.body;
-    if (!usuario_id || !evento_id) {
-      return res.status(400).json({
-        success: false,
-        message: 'Campos obrigatórios: usuario_id, evento_id'
-      });
-    }
-
-    try {
-      const novaInscricao = await Inscricao.create({ usuario_id, evento_id });
-      res.status(201).json({
-        success: true,
-        data: novaInscricao
-      });
-    } catch (error) {
-      console.error('Erro ao criar inscrição:', error);
-      res.status(500).json({
-        success: false,
-        message: 'Erro ao criar inscrição',
-        error: error.message
-      });
-    }
+  const { error, value } = inscricaoSchema.validate(req.body);
+  if (error) {
+    return res.status(400).json({ success: false, message: error.details[0].message });
   }
+
+  try {
+    const novaInscricao = await Inscricao.create(value);
+    res.status(201).json({ success: true, data: novaInscricao });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Erro ao criar inscrição', error: error.message });
+  }
+}
 
   /**
    * Exclui uma inscrição pelo ID

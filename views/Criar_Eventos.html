@@ -288,17 +288,18 @@
 
                 <!-- DATA -->
                 <div class="form-group">
-                    <label for="data_evento">Data do Evento <span class="required">*</span></label>
-                    <input type="date" id="data_evento" name="data_evento" required onchange="updatePreview()">
+                    <label for="data">Data do Evento <span class="required">*</span></label>
+                    <input type="date" id="data" name="data" required onchange="updatePreview()">
                 </div>
 
                 <!-- STATUS -->
                 <div class="form-group">
                     <label for="status">Status Inicial</label>
                     <select id="status" name="status" onchange="updatePreview()">
-                        <option value="agendado">Agendado</option>
-                        <option value="aberto">Inscrições Abertas</option>
-                        <option value="fechado">Inscrições Fechadas</option>
+                        <option value="agendado">agendado</option>
+                        <option value="aberto">aberto</option>
+                        <option value="fechado">fechado</option>
+                        <option value="aguardando">aguardando</option>
                     </select>
                 </div>
 
@@ -308,7 +309,7 @@
                     <div class="preview-item"><span class="preview-label">Título:</span> <span id="preview-titulo">-</span></div>
                     <div class="preview-item"><span class="preview-label">Data:</span> <span id="preview-data">-</span></div>
                     <div class="preview-item"><span class="preview-label">Local:</span> <span id="preview-local">-</span></div>
-                    <div class="preview-item"><span class="preview-label">Status:</span> <span id="preview-status">Agendado</span></div>
+                    <div class="preview-item"><span class="preview-label">Status:</span> <span id="preview-status">-</span></div>
                     <div class="preview-item"><span class="preview-label">Descrição:</span> <span id="preview-descricao">-</span></div>
                 </div>
 
@@ -324,7 +325,7 @@
     <script>
         function updatePreview() {
             const titulo = document.getElementById('titulo').value || '-';
-            const data = document.getElementById('data_evento').value;
+            const data = document.getElementById('data').value;
             const local = document.getElementById('local').value || '-';
             const status = document.getElementById('status').value || 'Agendado';
             const descricao = document.getElementById('descricao').value || '-';
@@ -378,7 +379,7 @@
         document.getElementById('eventForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const titulo = document.getElementById('titulo').value.trim();
-            const data = document.getElementById('data_evento').value;
+            const data = document.getElementById('data').value;
             const local = document.getElementById('local').value.trim();
             
             if (!titulo || !data || !local) {
@@ -431,7 +432,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             const today = new Date().toISOString().split('T')[0];
-            document.getElementById('data_evento').min = today;
+            document.getElementById('data').min = today;
             updatePreview();
         });
     </script>

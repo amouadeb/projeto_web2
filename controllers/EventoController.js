@@ -1,5 +1,16 @@
 
 const Evento = require('../models/Evento');
+const Joi = require('joi');
+
+const eventoSchema = Joi.object({
+    titulo: Joi.string().min(3).required(),
+    descricao: Joi.string().optional(),
+    data: Joi.string().required(),
+    local: Joi.string().min(3).required(),
+    status: Joi.string().valid('agendado', 'fechado', 'aberto', 'aguardando').default('agendado')
+    
+});
+
 
 /**
  * Controller para gerenciamento de eventos
@@ -68,24 +79,18 @@ class EventoController {
    */
   static async criarEvento(req, res) {
     try {
-      const { titulo, descricao, data, local, status } = req.body;
-      
-      
-      if (!titulo) {
-        return res.status(400).json({
-          success: false,
-          message: 'O título do evento é obrigatório'
-        });
-      }
-      
-      
-      const evento = await Evento.create({
-        titulo,
-        descricao,
-        data,
-        local,
-        status: status || 'agendado'
-      });
+      const { error, value } = eventoSchema.validate(req.body);
+if (error) {
+  return res.status(400).json({
+    success: false,
+    message: error.details[0].message
+  });
+}
+
+
+const { titulo, descricao, data, local, status } = value;
+const evento = await Evento.create({ titulo, descricao, data, local, status });
+
       
       res.status(201).json({
         success: true,
@@ -110,24 +115,15 @@ class EventoController {
   static async atualizarEvento(req, res) {
     try {
       const eventoId = req.params.id;
-      const { titulo, descricao, data, local, status } = req.body;
-      
-      
-      if (!titulo) {
-        return res.status(400).json({
-          success: false,
-          message: 'O título do evento é obrigatório'
-        });
-      }
-      
-      
-      const eventoAtualizado = await Evento.update(eventoId, {
-        titulo,
-        descricao,
-        data,
-        local,
-        status
-      });
+const { error, value } = eventoSchema.validate(req.body);
+if (error) {
+  return res.status(400).json({
+    success: false,
+    message: error.details[0].message
+  });
+}
+const eventoAtualizado = await Evento.update(eventoId, value);
+
       
       if (!eventoAtualizado) {
         return res.status(404).json({
