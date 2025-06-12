@@ -233,6 +233,34 @@
                 return;
             }
             
+            userData = {
+                nome: document.getElementById('cadastroNome').value,
+                email: document.getElementById('cadastroEmail').value,
+                senha: senha
+            };
+
+            fetch('http://localhost:3000/api/usuarios', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Erro ao cadastrar usuário:', response.status, response.statusText);
+                    throw new Error('Erro ao cadastrar usuário');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Usuário cadastrado com sucesso:', data);
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Erro ao cadastrar usuário. Tente novamente.');
+            });
+
             alert('Cadastro realizado com sucesso!');
             
         });
