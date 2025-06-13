@@ -362,12 +362,12 @@
             
             document.body.appendChild(alertDiv);
             
-            // Mostrar o alerta com animação
+          
             setTimeout(() => {
                 alertDiv.classList.add('show');
             }, 100);
             
-            // Remover o alerta após 3 segundos
+           
             setTimeout(() => {
                 alertDiv.classList.remove('show');
                 setTimeout(() => {
@@ -416,10 +416,10 @@
             })
             .then(data => {
                 console.log(data);
-                // Mostrar alerta de sucesso
+               
                 showAlert('Evento criado com sucesso!', 'success');
                 
-                // Redirecionar após 2 segundos para dar tempo de ver o alerta
+                
                 setTimeout(() => {
                     window.location.href = 'dashboard.html';
                 }, 2000);

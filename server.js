@@ -14,7 +14,7 @@ app.use(cors());
 app.set('html', path.join(__dirname, 'html'));
 
 app.set('view engine', 'ejs');
-//app.set('views', './views');
+
 
 
 const routes = require('./routes/index');

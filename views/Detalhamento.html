@@ -516,15 +516,15 @@
     </div>
 
     <script>
-        // Simulação de dados do usuário
+        
         let currentUser = {
             id: 1,
             name: 'João Silva',
             email: 'joao@email.com',
-            registeredEvents: [2, 3] // IDs dos eventos em que está inscrito
+            registeredEvents: [2, 3] 
         };
 
-        // Simulação de dados do evento
+        
         let currentEvent = {
             id: 1,
             title: 'Workshop de Desenvolvimento Web',
@@ -538,18 +538,18 @@
             registeredUsers: [] // Lista de usuários inscritos
         };
 
-        // Verificar se o usuário está inscrito
+        
         function isUserRegistered() {
             return currentUser.registeredEvents.includes(currentEvent.id);
         }
 
-        // Inicializar a página
+       
         function initializePage() {
             updateRegistrationArea();
             updateProgressBar();
         }
 
-        // Atualizar área de inscrição
+        
         function updateRegistrationArea() {
             const registrationArea = document.getElementById('registration-area');
             const availableSpots = currentEvent.totalSpots - currentEvent.registeredCount;
@@ -590,7 +590,7 @@
             }
         }
 
-        // Atualizar barra de progresso
+        
         function updateProgressBar() {
             const percentage = (currentEvent.registeredCount / currentEvent.totalSpots) * 100;
             document.getElementById('progress-fill').style.width = percentage + '%';
@@ -598,62 +598,61 @@
             document.getElementById('available-spots').textContent = currentEvent.totalSpots - currentEvent.registeredCount;
         }
 
-        // Mostrar modal de confirmação
+        
         function showConfirmModal() {
             document.getElementById('modal-event-title').textContent = currentEvent.title;
             document.getElementById('confirmModal').style.display = 'block';
         }
 
-        // Mostrar modal de cancelamento
+        
         function showCancelModal() {
             document.getElementById('cancel-event-title').textContent = currentEvent.title;
             document.getElementById('cancelModal').style.display = 'block';
         }
 
-        // Fechar modal de confirmação
+        
         function closeModal() {
             document.getElementById('confirmModal').style.display = 'none';
         }
 
-        // Fechar modal de cancelamento
+        
         function closeCancelModal() {
             document.getElementById('cancelModal').style.display = 'none';
         }
 
-        // Confirmar inscrição
+        
         function confirmRegistration() {
-            // Simular inscrição
+            
             currentUser.registeredEvents.push(currentEvent.id);
             currentEvent.registeredCount++;
             
-            // Atualizar interface
+            
             updateRegistrationArea();
             updateProgressBar();
             closeModal();
             
-            // Mostrar mensagem de sucesso
+            
             alert('Inscrição realizada com sucesso! Você receberá um email de confirmação.');
         }
 
-        // Confirmar cancelamento
         function confirmCancellation() {
-            // Simular cancelamento
+
             const index = currentUser.registeredEvents.indexOf(currentEvent.id);
             if (index > -1) {
                 currentUser.registeredEvents.splice(index, 1);
                 currentEvent.registeredCount--;
             }
             
-            // Atualizar interface
+           
             updateRegistrationArea();
             updateProgressBar();
             closeCancelModal();
             
-            // Mostrar mensagem de confirmação
+          
             alert('Inscrição cancelada com sucesso.');
         }
 
-        // Compartilhar evento
+        
         function shareEvent(platform) {
             const eventUrl = window.location.href;
             const eventTitle = currentEvent.title;
@@ -674,12 +673,12 @@
             }
         }
 
-        // Voltar para a página anterior
+        
         function goBack() {
             window.history.back();
         }
 
-        // Fechar modais ao clicar fora
+        
         window.onclick = function(event) {
             const confirmModal = document.getElementById('confirmModal');
             const cancelModal = document.getElementById('cancelModal');
@@ -692,7 +691,7 @@
             }
         }
 
-        // Inicializar página quando carregar
+        
         document.addEventListener('DOMContentLoaded', initializePage);
     </script>
 </body>

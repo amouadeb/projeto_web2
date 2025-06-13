@@ -115,7 +115,7 @@
     </form>
 
     <script>
-        // Script básico para demonstrar interação com a API
+       
         document.getElementById('createForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const formData = {
@@ -144,7 +144,7 @@
             });
         });
 
-        // Função para mostrar formulário de edição
+       
         function showEditForm(id, titulo, descricao, data, local, status) {
             document.getElementById('editId').value = id;
             document.getElementById('editTitulo').value = titulo;
@@ -155,17 +155,17 @@
             document.getElementById('editForm').style.display = 'block';
         }
 
-        // Função para formatar data para input datetime-local
+        
         function formatDateForInput(date) {
             return date.toISOString().slice(0, 16);
         }
 
-        // Função para esconder formulário de edição
+        
         function hideEditForm() {
             document.getElementById('editForm').style.display = 'none';
         }
 
-        // Adicionar event listeners para links de edição
+        
         document.addEventListener('DOMContentLoaded', function() {
             const editLinks = document.querySelectorAll('a[href^="#edit-"]');
             editLinks.forEach(link => {
@@ -182,7 +182,7 @@
                 });
             });
 
-            // Configurar formulário de edição
+            
             document.getElementById('editForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 const id = document.getElementById('editId').value;
@@ -212,7 +212,7 @@
                 });
             });
 
-            // Configurar links de exclusão
+           
             const deleteLinks = document.querySelectorAll('a[href^="#delete-"]');
             deleteLinks.forEach(link => {
                 link.addEventListener('click', function(e) {

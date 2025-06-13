@@ -9,16 +9,14 @@ CREATE TABLE IF NOT EXISTS usuarios (
 
 
 CREATE TABLE IF NOT EXISTS eventos (
-  id             SERIAL PRIMARY KEY,
-  nome           VARCHAR(100)   NOT NULL,
-  descricao      TEXT,
-  data_evento    TIMESTAMP,
-  local          VARCHAR(100),
-  status         VARCHAR(20)    DEFAULT 'agendado',
-  organizador_id INTEGER       REFERENCES usuarios(id),
-  created_at     TIMESTAMP      DEFAULT CURRENT_TIMESTAMP,
-  updated_at     TIMESTAMP      DEFAULT CURRENT_TIMESTAMP
+  id SERIAL PRIMARY KEY,
+  titulo VARCHAR(100) NOT NULL,
+  descricao TEXT,
+  data VARCHAR(20) NOT NULL,
+  local VARCHAR(100) NOT NULL,
+  status VARCHAR(20) DEFAULT 'agendado'
 );
+
 
 
 CREATE TABLE IF NOT EXISTS inscricoes (
