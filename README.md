@@ -7,6 +7,7 @@ Este projeto implementa uma API simples de gerenciamento de eventos utilizando a
 A Plataforma de Eventos é uma aplicação simples em backend que facilita a organização e acompanhamento de eventos. O sistema foi desenvolvido com foco na simplicidade e eficiência, permitindo operações CRUD (Create, Read, Update, Delete) no cenario de eventos. 
 Para realizar um cadastro no banco de dados há 2 formas, a primeira sendo ultilizando o CRUD dentro do arquivo rest.http, no qual é possivel realizar um post que é responsavel pela criação do usuario/inscrição/evento, o PUT pra atualizar-lo ou ate um DELETE para apagar. Lembre-se que antes de manipular o banco de dados ultilizando o rest.http é necessario rodar em seu terminal "npm start" e garantir que esteja rodando na porta 3000, para assim conseguir fazer um "send request" para o banco de dados no supabase e conseguir realizar criar,deletar ou atualizar um usuario,inscrição ou eventos. 
 A segunda forma para cadastrar algo no banco de dados é por meio do html localizado na pasta "views" do projeto, no caso é necessario apenas rodar o live server no arquivo "index.html" isso vai redirecionar o usuario diretamente na plataforma de gerenciamento de eventos. O usuario tera que realizar seu login caso ja esteja logado, ou se cadastrar apos isso aparecera uma pagina com painel dos eventos mostrando quais eventos o usuario ja participa e quais sao seus proximos eventos. Nesta pagina aparecera uma opção de criar um novo evento localizado o canto superior direto  da pagina, apos cliclar o usuario consegue criar um novo evento com: Titulo do evento, Descrição, Local e status. Apos a criação deste evento os dados serão diretamente enviados ao banco de dados do supabase, onde serão armazenados graças a ultilização do fetch api rodando na porta 3000 que realiza toda essa conexção do front com backend.
+Por fim, a ultima forma e mais recomendada de acessar o sistema de gerenciamento é por meio do http://localhost:3000, apos instalar todas as dependencias e bibliotecas, é neecssario realizar node server.js ou npm start e aparecer "servidor rodando na porta 3000".
 OBS: Os arquivos ejs tambem são outra maneira de acessar o html, ele serve como um organizador visual de todos arquvios/pastas do projeto.
 
 ## Principais funcionalidades:
@@ -15,6 +16,7 @@ OBS: Os arquivos ejs tambem são outra maneira de acessar o html, ele serve como
 - Conexão com banco de dados Postgre/Express/Supabase
 - Interface simples para gerenciamento  e visualização de eventos
 - Conexção Front-Backend por meio de  fetch api com HTML/EJS
+- Biblioteca Joi e Schema trazendo segurança para o projeto
 
 
 ## Estrutura de Pastas e Arquivos
@@ -52,10 +54,10 @@ projeto_web2/
 │   └── index.js           # Rotas principais da API
 │
 ├── views/                 # Telas da aplicação usando EJS
-│   ├── index.html         # Pagina inicial do cadastro
-│   ├── Dashboard.html     # Dashboard com visualização dos eventos
+│   ├── index.ejs         # Pagina inicial do cadastro
+│   ├── Dashboard.ejs     # Dashboard com visualização dos eventos
 │   └── Detalhamento.html  # Detalhes do evento
-│   ├── criar_evento.html  # Página HTML de criação de eventos
+│   ├── criar_evento.ejs  # Página HTML de criação de eventos
 │   └── eventos.ejs        # Página visual de todos arquivos/pastas do projeto
 │
 ├── .env                   # Variáveis de ambiente (não versionar)
@@ -183,6 +185,7 @@ Todas instruções estão incluidas dentro da descrição do projeto.
 - **pg**: Cliente PostgreSQL para Node.js
 - **dotenv**: Carregamento de variáveis de ambiente
 - **ejs**: Engine de templates para visualização (html)
+- **joi**: Realiza schema dos models
 
 ## Exemplos de Uso
 

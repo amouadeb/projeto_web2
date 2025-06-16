@@ -31,24 +31,22 @@ router.get('/', (req, res) => {
 
 
 
-router.get('/api/usuarios', UsuarioController.listarUsuarios);
-router.get('/api/usuarios/:id', UsuarioController.getUsuario);
-router.post('/api/usuarios', UsuarioController.criarUsuario);
-router.put('/api/usuarios/:id', UsuarioController.atualizarUsuario);
-router.delete('/api/usuarios/:id', UsuarioController.excluirUsuario);
+router.get('/eventos', EventoController.listarEventos);
+router.get('/eventos/:id', EventoController.getEvento);
+router.post('/eventos', EventoController.criarEvento);
+router.put('/eventos/:id', EventoController.atualizarEvento);
+router.delete('/eventos/:id', EventoController.excluirEvento);
 
+router.get('/usuarios', UsuarioController.listarUsuarios);
+router.get('/usuarios/:id', UsuarioController.getUsuario);
+router.post('/usuarios', UsuarioController.criarUsuario);
+router.put('/usuarios/:id', UsuarioController.atualizarUsuario);
+router.delete('/usuarios/:id', UsuarioController.excluirUsuario);
 
-router.get('/api/eventos', EventoController.listarEventos);
-router.get('/api/eventos/:id', EventoController.getEvento);
-router.post('/api/eventos', EventoController.criarEvento);
-router.put('/api/eventos/:id', EventoController.atualizarEvento);
-router.delete('/api/eventos/:id', EventoController.excluirEvento);
+router.get('/inscricoes', InscricaoController.listarInscricoes);
+router.get('/inscricoes/:id', InscricaoController.getInscricao);
+router.post('/inscricoes', InscricaoController.criarInscricao);
+router.delete('/inscricoes/:id', InscricaoController.excluirInscricao);
 
-
-
-router.get('/api/inscricoes', InscricaoController.listarInscricoes);
-router.get('/api/inscricoes/:id', InscricaoController.getInscricao);
-router.post('/api/inscricoes', InscricaoController.criarInscricao);
-router.delete('/api/inscricoes/:id', InscricaoController.excluirInscricao);
 
 module.exports = router;
