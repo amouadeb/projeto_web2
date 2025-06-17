@@ -24,5 +24,56 @@ CREATE TABLE IF NOT EXISTS eventos (
 
 ### DIAGRAMA MVC
 Na imagem a seguir pode-se encontrar o diagrama MVC feito no draw.io
-<img src="./assets/diagrama.png"></img>
+
+Nossa arquitetura de aplicação web foi construída seguindo o padrão Model-View-Controller (MVC), com o propósito de efetuar uma divisão essencial de responsabilidades entre as camadas, assim facilitando sua manutenção ao longo do projeto. O diagrama exibido  foi separado em três blocos essenciais: Cliente, Servidor e Banco de Dados. Essa separação também permite uma melhor visualização do diagrama, assim como se caracteriza como padrão do MVC.
+
+
+Já o front-end realiza  e recebe requisições  HTTP com os métodos GET (buscar), POST (criar), PUT (atualizar) e DELETE (apagar) essas requisições chegam diretamente ao controller, que verificam as solicitações e  acionam os services depois repositories até chegaram no models que se conecta com banco de dados. 
+
+
+| Camada      | Função                                                                                     |
+|-------------|--------------------------------------------------------------------------------------------|
+| Controller  | Recebe e responde requisições diretamente do cliente.                                      |
+| Service     | Responsável pelas regras de negócios.                                                      |
+| Repository  | Acessa o banco de dados e realiza buscas específicas (Post/Get), garantindo consultas SQL. |
+| Model       | Define o modelo relacional e as tabelas no banco de dados (PostgreSQL).                    |
+| View        | Renderiza a página para melhor visualização e interação do cliente.                        |
+
+
+
+Tendo em vista essa explicação detalhada das camadas é possível apronfudar sobre o diagrama MVC.
+
+
+<div align="center">
+  <sub>Arquitetura-MVC</sub><br>
+  <img src="../assets/draw2.png" width="100%" 
+  alt="Arquitetura-MVC"><br>
+  
+
+## Views:
+
+## Eventos.ejs: 
+Visualização - Ver estrutrua de pastas
+
+
+## Index.ejs
+Login - Usuario
+Cadastro - Usuario
+
+
+## Dashboard.ejs:
+Visualização - Ver eventos
+Sair - Voltar pra tela de login
+Criar - Criar um novo evento
+
+
+## Criar_Eventos.ejs:
+Criar - Criar um novo evento
+
+
+## Detalhamento.ejs:
+Detalhes- Outros eventos mundiais e seus eventos
+
+
+
 
