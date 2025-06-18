@@ -27,7 +27,7 @@ Pastas seguindo o padrão MVC completo:
 projeto_web2/
 │
 ├── assets/                # Recursos estáticos (imagens, diagramas etc.)
-│   ├── diagrama.png       # Diagrama do projeto
+│   ├── draw2.png       # Diagrama do projeto
 │   └── modelagem.png      # Modelo de dados
 │
 ├── config/                # Arquivos de configuração
