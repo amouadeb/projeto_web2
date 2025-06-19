@@ -24,29 +24,31 @@ OBS: Os arquivos ejs tambem são outra maneira de acessar o html, ele serve como
 Pastas seguindo o padrão MVC completo:
 
 
-projeto_web2/
+projeto_web2-main/
 │
 ├── assets/                # Recursos estáticos (imagens, diagramas etc.)
-│   ├── draw2.png       # Diagrama do projeto
+│   ├── draw2.png          # Diagrama do projeto
 │   └── modelagem.png      # Modelo de dados
 │
 ├── config/                # Arquivos de configuração
 │   └── database.js        # Conexão com o banco de dados
 │
-├── controllers/           # Controladores da aplicação
+├── controllers/           # Controladores da aplicação (lógica dos endpoints)
 │   ├── EventoController.js     # Lógica dos endpoints de evento
 │   ├── InscriçãoController.js  # Lógica dos endpoints de inscrição
 │   └── UsuarioController.js    # Lógica dos endpoints de usuário
 │
-├── documents/             # Documentos e specs
-│   └── WAD.md             # Documento WAD
+├── documents/             # Documentos e especificações do projeto
+│   └── WAD.md             # Documento Web Application Document (WAD)
 │
-├── migration/             # Scripts de migração e inicialização do banco
+├── migration/             # Scripts de migração/inicialização do banco
 │   ├── 20250522init.sql   # Script SQL para criar a estrutura inicial
 │   └── script_sql.js      # Script auxiliar para migrações
 │
 ├── models/                # Modelos de dados (ORM)
-│   └── Evento.js          # Definição do modelo Evento
+│   ├── Evento.js          # Definição do modelo Evento
+│   ├── Inscrição.js       # Definição do modelo Inscrição
+│   └── Usuario.js         # Definição do modelo Usuário
 │
 ├── node_modules/          # Dependências instaladas pelo npm
 │
@@ -54,20 +56,21 @@ projeto_web2/
 │   └── index.js           # Rotas principais da API
 │
 ├── views/                 # Telas da aplicação usando EJS
-│   ├── index.ejs         # Pagina inicial do cadastro
-│   ├── Dashboard.ejs     # Dashboard com visualização dos eventos
-│   └── Detalhamento.html  # Detalhes do evento
-│   ├── criar_evento.ejs  # Página HTML de criação de eventos
-│   └── eventos.ejs        # Página visual de todos arquivos/pastas do projeto
+│   ├── Criar_Eventos.ejs  # Página de criação de eventos
+│   ├── Dashboard.ejs      # Dashboard com eventos
+│   ├── Lista.ejs          # Listagem de eventos
+│   └── index.ejs          # Página inicial
 │
-├── .env                   # Variáveis de ambiente (não versionar)
-├── .env.example           # Exemplo de configuração do ambiente
+├── .env.example           # Exemplo de configuração de variáveis de ambiente
 ├── .gitignore             # Arquivos e pastas ignorados pelo Git
+├── README.md              # Documentação geral do projeto
+├── Video                  # Arquivo de vídeo da apresentação (provavelmente)
+├── app.js                 # Arquivo principal da aplicação (App Express)
 ├── package-lock.json      # Registro exato das versões das dependências
 ├── package.json           # Dependências e scripts do projeto
-├── README.md              # Documentação geral do projeto
 ├── rest.http              # Arquivo para testar as rotas HTTP da API
-└── server.js              # Arquivo principal que inicializa o servidor
+└── server.js              # Inicialização do servidor
+
 
 
 
